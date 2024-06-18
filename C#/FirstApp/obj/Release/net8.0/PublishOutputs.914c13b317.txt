@@ -1,0 +1,5 @@
+C:\Users\MathisLEBEL\Desktop\C#\FirstApp\bin\Release\net8.0\publish\FirstApp.exe
+C:\Users\MathisLEBEL\Desktop\C#\FirstApp\bin\Release\net8.0\publish\FirstApp.dll
+C:\Users\MathisLEBEL\Desktop\C#\FirstApp\bin\Release\net8.0\publish\FirstApp.deps.json
+C:\Users\MathisLEBEL\Desktop\C#\FirstApp\bin\Release\net8.0\publish\FirstApp.runtimeconfig.json
+C:\Users\MathisLEBEL\Desktop\C#\FirstApp\bin\Release\net8.0\publish\FirstApp.pdb
