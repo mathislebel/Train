@@ -3087,11 +3087,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\MathisLEBEL\\Desktop\\C#\\FirstApp\\FirstApp.csproj",
+      "projectUniqueName": "C:\\Users\\MathisLEBEL\\Documents\\GitHub\\Train\\C#\\FirstApp\\FirstApp.csproj",
       "projectName": "FirstApp",
-      "projectPath": "C:\\Users\\MathisLEBEL\\Desktop\\C#\\FirstApp\\FirstApp.csproj",
+      "projectPath": "C:\\Users\\MathisLEBEL\\Documents\\GitHub\\Train\\C#\\FirstApp\\FirstApp.csproj",
       "packagesPath": "C:\\Users\\MathisLEBEL\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\MathisLEBEL\\Desktop\\C#\\FirstApp\\obj\\",
+      "outputPath": "C:\\Users\\MathisLEBEL\\Documents\\GitHub\\Train\\C#\\FirstApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

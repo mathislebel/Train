@@ -1,97 +1,84 @@
 ﻿using System;
-using System.Net.Http.Headers;
 
-Console.Write("entrer un nombre : ");
-int n = int.Parse(Console.ReadLine());
-Console.Write("entrer un nombre : ");
-int m = int.Parse(Console.ReadLine());
-Console.WriteLine("la somme est : " + (n + m));
-
-Console.Write("OK trop maintenant dit moi la temperature en celsius: ");
-int celsius = int.Parse(Console.ReadLine());
-int fahrenheit = celsius * 9 / 5 + 32;
-Console.WriteLine("la temperature en fahrenheit est : " + fahrenheit);
-
-
-Console.Write("entrer un nombre : ");
-int a = int.Parse(Console.ReadLine());
-
-if (a % 2 == 0)
+class Morpion
 {
-    Console.WriteLine("le nombre est pair");
+    static char[,] gameBoard = { { '1', '2', '3' }, { '4', '5', '6' }, { '7', '8', '9' } };
+    static char currentPlayer = 'X';
 
-}
-else
-{
-    Console.WriteLine("le nombre est impair");
-}
-
-
-Random random = new Random();
-int randomNumber = random.Next(1, 101);
-
-while (true)
-{
-Console.Write("devinez le nombre entre 1 et 100: ");
-int guess = int.Parse(Console.ReadLine());
-
-if (guess == randomNumber)
-{
-    Console.WriteLine( "bravo c'est le bo nombre");
-    break;
-}
-else if (guess > randomNumber)
-{
-    Console.WriteLine("le nombre est trop grand");
-}
-else
-{
-    Console.WriteLine("le nombre est trop petit");
-    
-}
-}
-
-Console.Write("entrer un nombre negative entier: ");
-int number = int.Parse(Console.ReadLine());
-int fact = 1;
-for (int i = 1; i <= number; i++)
-{
-    fact *= i;
-}
-Console.WriteLine("le factoriel de " + number + " est " + fact);
-
-Console.Write("entrer une chaine de charactere séparer par un espace : ");
-string[] words = Console.ReadLine().Split(' ');
-Array.Sort(words);
-foreach (string word in words)
-{
-    Console.WriteLine(word);
-}
-
-    
-    Console.Write("entrer un nombre entier : ");
-    int number2 = int.Parse(Console.ReadLine());
-    int sum = 0;
-    while (number2 != 0)
+    static void Main()
     {
-        sum += number2 % 10;
-        number2 /= 10;
+        int moves = 0;
+        bool isGameEnd = false;
+
+        Console.WriteLine("Bienvenue dans le jeu de morpion");
+        Console.WriteLine("Joueur 1 est X et Joueur 2 est O\n");
+
+        while (!isGameEnd)
+        {
+            DisplayBoard();
+            PlayerTurn();
+            isGameEnd = CheckWin();
+            if (isGameEnd)
+            {
+                DisplayBoard();
+                Console.WriteLine($"Le joueur {currentPlayer} a gagné!");
+            }
+            else if (moves == 9)
+            {
+                DisplayBoard();
+                Console.WriteLine("Match nul!");
+                isGameEnd = true;
+            }
+            currentPlayer = currentPlayer == 'X' ? 'O' : 'X';
+            moves++;
+        }
     }
-    Console.WriteLine("la somme des chiffres est : " + sum);
 
-    Console.Write("entrer le nombre total de seconde  : ");
-    int totalSeconds = int.Parse(Console.ReadLine());
-    int hours = totalSeconds / 3600;
-    int minutes = (totalSeconds % 3600) / 60;
-    int seconds = totalSeconds % 60;
-    Console.WriteLine("le temps est : " + hours + "h " + minutes + "m " + seconds + "s");
-
-
-    Console.Write("entrer un mots: ");
-    string word2 = Console.ReadLine();
-    string reverseWord = "";
-    for (int i = word2.Length - 1; i >= 0; i--)
+    static void DisplayBoard()
     {
-        reverseWord += word2[i];
+        Console.WriteLine($" {gameBoard[0, 0]} | {gameBoard[0, 1]} | {gameBoard[0, 2]} ");
+        Console.WriteLine("---+---+---");
+        Console.WriteLine($" {gameBoard[1, 0]} | {gameBoard[1, 1]} | {gameBoard[1, 2]} ");
+        Console.WriteLine("---+---+---");
+        Console.WriteLine($" {gameBoard[2, 0]} | {gameBoard[2, 1]} | {gameBoard[2, 2]} \n");
     }
-    Console.WriteLine("le mots inverser est : " + reverseWord);
+
+    static void PlayerTurn()
+    {
+        Console.WriteLine($"C'est le tour du joueur {currentPlayer}. Choisissez une position:");
+        string input = Console.ReadLine();
+        int position = int.Parse(input) - 1;
+        int row = position / 3;
+        int col = position % 3;
+
+        if (gameBoard[row, col] != 'X' && gameBoard[row, col] != 'O')
+        {
+            gameBoard[row, col] = currentPlayer;
+        }
+        else
+        {
+            Console.WriteLine("Position déjà prise, essayez à nouveau.");
+            PlayerTurn();
+        }
+    }
+
+    static bool CheckWin()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+          
+            if (gameBoard[i, 0] == currentPlayer && gameBoard[i, 1] == currentPlayer && gameBoard[i, 2] == currentPlayer)
+                return true;
+        
+            if (gameBoard[0, i] == currentPlayer && gameBoard[1, i] == currentPlayer && gameBoard[2, i] == currentPlayer)
+                return true;
+        }
+        
+        if (gameBoard[0, 0] == currentPlayer && gameBoard[1, 1] == currentPlayer && gameBoard[2, 2] == currentPlayer)
+            return true;
+        if (gameBoard[0, 2] == currentPlayer && gameBoard[1, 1] == currentPlayer && gameBoard[2, 0] == currentPlayer)
+            return true;
+
+        return false;
+    }
+}
